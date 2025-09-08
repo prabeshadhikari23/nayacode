@@ -19,6 +19,11 @@ import Careers from "./pages/Careers";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Blog from "./pages/Blog";
 import BlogPostDetail from "./pages/BlogPostDetail";
+import NayaHomepage from "./pages/NayaHomepage";
+import Services from "./pages/Services";
+import Products from "./pages/Products";
+import Partners from "./pages/Partners";
+import Contact from "./pages/Contact";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
@@ -30,7 +35,15 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
+            {/* Naya Code Routes */}
+            <Route path="/" element={<NayaHomepage />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/partners" element={<Partners />} />
+            <Route path="/contact" element={<Contact />} />
+            
+            {/* Legacy Routes */}
+            <Route path="/wrlds" element={<Index />} />
             <Route path="/projects/firecat" element={<FireCatProject />} />
             <Route path="/projects/sport-retail" element={<SportRetailProject />} />
             <Route path="/projects/workwear" element={<WorkwearProject />} />

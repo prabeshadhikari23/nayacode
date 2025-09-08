@@ -63,12 +63,10 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				wrlds: {
-					teal: '#9F9EA1',
-					dark: '#3F3F3F',
-					light: '#F6F6F7',
-					accent: '#C8C8C9',
-					muted: '#F1F1F1'
+				naya: {
+					blue: 'hsl(var(--naya-blue))',
+					red: 'hsl(var(--naya-red))',
+					white: 'hsl(var(--naya-white))',
 				}
 			},
 			borderRadius: {
@@ -77,7 +75,9 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
+				'sans': ['Inter', 'Urbanist', 'Poppins', 'Open Sans', 'sans-serif'],
 				'space': ['Space Grotesk', 'sans-serif'],
+				'heading': ['Inter', 'Urbanist', 'sans-serif'],
 			},
 			keyframes: {
 				'accordion-down': {
