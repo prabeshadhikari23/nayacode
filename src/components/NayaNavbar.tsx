@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { EditableText } from "@/components/cms/EditableText";
 
 const NayaNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,16 +32,23 @@ const NayaNavbar = () => {
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
+      isScrolled ? 'bg-white shadow-lg border-b-2 border-vibrant-purple' : 'bg-white/95 backdrop-blur-sm'
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-naya-blue rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-br from-vibrant-purple to-vibrant-pink rounded-lg flex items-center justify-center shadow-lg">
               <span className="text-white font-bold text-lg">NC</span>
             </div>
-            <span className="text-xl font-bold text-naya-blue">Naya Code</span>
+            <span className="text-xl font-bold bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent">
+              <EditableText 
+                contentKey="brand.name"
+                defaultValue="Naya Code"
+                as="span"
+                className="bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent"
+              />
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -51,7 +59,7 @@ const NayaNavbar = () => {
                 to={item.path}
                 className={`text-sm font-medium transition-colors hover:text-naya-blue ${
                   location.pathname === item.path 
-                    ? 'text-naya-blue border-b-2 border-naya-blue pb-1' 
+                    ? 'text-vibrant-purple border-b-2 border-vibrant-purple pb-1' 
                     : 'text-gray-700'
                 }`}
               >
@@ -64,13 +72,13 @@ const NayaNavbar = () => {
           <div className="hidden md:flex items-center space-x-4">
             <a
               href="tel:+97714548052"
-              className="flex items-center text-sm text-gray-600 hover:text-naya-blue transition-colors"
+              className="flex items-center text-sm text-gray-600 hover:text-vibrant-purple transition-colors"
             >
               <Phone className="w-4 h-4 mr-1" />
               +977 14548052
             </a>
             <Link to="/contact">
-              <Button className="bg-naya-red hover:bg-red-600 text-white">
+              <Button className="bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-red text-white shadow-lg">
                 Get a Quote
               </Button>
             </Link>
@@ -106,8 +114,8 @@ const NayaNavbar = () => {
                   to={item.path}
                   className={`block px-3 py-2 text-base font-medium transition-colors ${
                     location.pathname === item.path
-                      ? 'text-naya-blue bg-blue-50'
-                      : 'text-gray-700 hover:text-naya-blue hover:bg-gray-50'
+                      ? 'text-vibrant-purple bg-purple-50'
+                      : 'text-gray-700 hover:text-vibrant-purple hover:bg-purple-50'
                   }`}
                 >
                   {item.name}
@@ -116,13 +124,13 @@ const NayaNavbar = () => {
               <div className="px-3 py-2">
                 <a
                   href="tel:+97714548052"
-                  className="flex items-center text-sm text-gray-600 hover:text-naya-blue transition-colors mb-3"
+                  className="flex items-center text-sm text-gray-600 hover:text-vibrant-purple transition-colors mb-3"
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   +977 14548052
                 </a>
                 <Link to="/contact">
-                  <Button className="w-full bg-naya-red hover:bg-red-600 text-white">
+                  <Button className="w-full bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-red text-white">
                     Get a Quote
                   </Button>
                 </Link>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { EditableText } from "@/components/cms/EditableText";
 
 const NayaFooter = () => {
   const currentYear = new Date().getFullYear();
@@ -27,20 +28,32 @@ const NayaFooter = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-naya-blue rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-vibrant-purple to-vibrant-pink rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">NC</span>
               </div>
-              <span className="text-xl font-bold">Naya Code</span>
+              <span className="text-xl font-bold">
+                <EditableText 
+                  contentKey="footer.brand"
+                  defaultValue="Naya Code"
+                  as="span"
+                  className="text-white"
+                />
+              </span>
             </Link>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Transforming challenges into digital opportunities. We are your trusted partner for 
-              innovative, scalable, and secure IT solutions in Nepal and beyond.
+              <EditableText 
+                contentKey="footer.description"
+                defaultValue="Transforming challenges into digital opportunities. We are your trusted partner for innovative, scalable, and secure IT solutions in Nepal and beyond."
+                as="span"
+                className="text-gray-300"
+                multiline
+              />
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -49,7 +62,12 @@ const NayaFooter = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className={`text-gray-400 hover:text-white transition-colors p-2 rounded-full ${
+                    index === 0 ? 'hover:bg-vibrant-purple' :
+                    index === 1 ? 'hover:bg-vibrant-cyan' :
+                    index === 2 ? 'hover:bg-vibrant-pink' :
+                    'hover:bg-vibrant-orange'
+                  }`}
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />

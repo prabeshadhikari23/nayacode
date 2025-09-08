@@ -4,6 +4,7 @@ import NayaPageLayout from "@/components/NayaPageLayout";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { EditableText } from "@/components/cms/EditableText";
 
 const Products = () => {
   const fadeInUp = {
@@ -86,7 +87,7 @@ const Products = () => {
       />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-naya-blue to-blue-800 text-white py-20">
+      <section className="bg-gradient-to-br from-vibrant-indigo via-vibrant-purple to-vibrant-pink text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial="initial"
@@ -95,7 +96,12 @@ const Products = () => {
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Products</h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              Innovative software solutions designed to solve real business challenges and drive digital transformation.
+              <EditableText 
+                contentKey="products.hero.subtitle"
+                defaultValue="Innovative software solutions designed to solve real business challenges and drive digital transformation."
+                as="span"
+                className="text-blue-100"
+              />
             </p>
           </motion.div>
         </div>
@@ -114,12 +120,22 @@ const Products = () => {
             {products.map((product, index) => (
               <motion.div
                 key={index}
-                className="bg-white rounded-lg shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow"
+                className={`bg-white rounded-lg shadow-lg border-l-4 overflow-hidden hover:shadow-xl transition-all hover:scale-105 ${
+                  index % 4 === 0 ? 'border-vibrant-purple' :
+                  index % 4 === 1 ? 'border-vibrant-cyan' :
+                  index % 4 === 2 ? 'border-vibrant-orange' :
+                  'border-vibrant-emerald'
+                }`}
                 variants={fadeInUp}
               >
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <product.icon className="w-12 h-12 text-naya-blue" />
+                    <product.icon className={`w-12 h-12 ${
+                      index % 4 === 0 ? 'text-vibrant-purple' :
+                      index % 4 === 1 ? 'text-vibrant-cyan' :
+                      index % 4 === 2 ? 'text-vibrant-orange' :
+                      'text-vibrant-emerald'
+                    }`} />
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                       product.status === 'Available' ? 'bg-green-100 text-green-800' :
                       product.status === 'Beta' ? 'bg-yellow-100 text-yellow-800' :
@@ -147,7 +163,12 @@ const Products = () => {
                       <Button 
                         variant="outline" 
                         size="sm" 
-                        className="flex-1 border-naya-blue text-naya-blue hover:bg-naya-blue hover:text-white"
+                        className={`flex-1 ${
+                          index % 4 === 0 ? 'border-vibrant-purple text-vibrant-purple hover:bg-vibrant-purple' :
+                          index % 4 === 1 ? 'border-vibrant-cyan text-vibrant-cyan hover:bg-vibrant-cyan' :
+                          index % 4 === 2 ? 'border-vibrant-orange text-vibrant-orange hover:bg-vibrant-orange' :
+                          'border-vibrant-emerald text-vibrant-emerald hover:bg-vibrant-emerald'
+                        } hover:text-white`}
                       >
                         <ExternalLink className="w-4 h-4 mr-2" />
                         Demo
@@ -155,7 +176,7 @@ const Products = () => {
                     )}
                     <Button 
                       size="sm" 
-                      className="flex-1 bg-naya-red hover:bg-red-600 text-white"
+                      className="flex-1 bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-red text-white"
                     >
                       Learn More
                     </Button>
@@ -168,7 +189,7 @@ const Products = () => {
       </section>
 
       {/* Custom Development CTA */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center max-w-4xl mx-auto"
@@ -178,30 +199,40 @@ const Products = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-naya-blue mb-6">
-              Need Something Custom?
+              <EditableText 
+                contentKey="products.custom.title"
+                defaultValue="Need Something Custom?"
+                as="span"
+                className="bg-gradient-to-r from-vibrant-orange to-vibrant-red bg-clip-text text-transparent"
+              />
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              We specialize in developing custom software solutions tailored to your specific business requirements. 
-              From enterprise applications to specialized tools, we can build exactly what you need.
+              <EditableText 
+                contentKey="products.custom.subtitle"
+                defaultValue="We specialize in developing custom software solutions tailored to your specific business requirements. From enterprise applications to specialized tools, we can build exactly what you need."
+                as="span"
+                className="text-gray-600"
+                multiline
+              />
             </p>
             
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div className="text-center">
-                <div className="w-16 h-16 bg-naya-blue text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-vibrant-purple to-vibrant-pink text-white rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl font-bold">1</span>
                 </div>
                 <h3 className="font-semibold text-gray-800 mb-2">Consultation</h3>
                 <p className="text-sm text-gray-600">We understand your requirements and challenges</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 bg-naya-blue text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-vibrant-cyan to-vibrant-blue text-white rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl font-bold">2</span>
                 </div>
                 <h3 className="font-semibold text-gray-800 mb-2">Development</h3>
                 <p className="text-sm text-gray-600">We build your custom solution with modern technologies</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 bg-naya-blue text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-vibrant-orange to-vibrant-red text-white rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl font-bold">3</span>
                 </div>
                 <h3 className="font-semibold text-gray-800 mb-2">Support</h3>
@@ -210,7 +241,7 @@ const Products = () => {
             </div>
             
             <Link to="/contact">
-              <Button size="lg" className="bg-naya-red hover:bg-red-600 text-white px-8 py-4 text-lg">
+              <Button size="lg" className="bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-red text-white px-8 py-4 text-lg shadow-lg">
                 Start Your Custom Project
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>

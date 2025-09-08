@@ -67,6 +67,17 @@ export default {
 					blue: 'hsl(var(--naya-blue))',
 					red: 'hsl(var(--naya-red))',
 					white: 'hsl(var(--naya-white))',
+				},
+				// Colorful palette
+				vibrant: {
+					purple: '#8B5CF6',
+					pink: '#EC4899',
+					orange: '#F97316',
+					cyan: '#06B6D4',
+					emerald: '#10B981',
+					yellow: '#F59E0B',
+					indigo: '#6366F1',
+					rose: '#F43F5E',
 				}
 			},
 			borderRadius: {

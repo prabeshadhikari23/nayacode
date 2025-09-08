@@ -4,8 +4,12 @@ import NayaPageLayout from "@/components/NayaPageLayout";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { EditableText } from "@/components/cms/EditableText";
+import { useCMS } from "@/components/cms/CMSProvider";
 
 const Services = () => {
+  const { services: cmsServices } = useCMS();
+  
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0 },
@@ -80,7 +84,7 @@ const Services = () => {
       />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-naya-blue to-blue-800 text-white py-20">
+      <section className="bg-gradient-to-br from-vibrant-purple via-vibrant-pink to-vibrant-orange text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial="initial"
@@ -89,7 +93,12 @@ const Services = () => {
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Services</h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              Comprehensive IT solutions designed to drive your business forward with innovation and expertise.
+              <EditableText 
+                contentKey="services.hero.subtitle"
+                defaultValue="Comprehensive IT solutions designed to drive your business forward with innovation and expertise."
+                as="span"
+                className="text-blue-100"
+              />
             </p>
           </motion.div>
         </div>
@@ -99,7 +108,7 @@ const Services = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid gap-12">
-            {services.map((service, index) => (
+            {(cmsServices.length > 0 ? cmsServices : services).map((service, index) => (
               <motion.div
                 key={service.id}
                 id={service.id}
@@ -112,15 +121,33 @@ const Services = () => {
                 viewport={{ once: true }}
               >
                 <div className={`${index % 2 === 1 ? 'md:order-2' : ''}`}>
-                  <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-100">
-                    <service.icon className="w-16 h-16 text-naya-blue mb-6" />
+                  <div className={`bg-white p-8 rounded-lg shadow-lg border-l-4 ${
+                    index % 4 === 0 ? 'border-vibrant-purple' :
+                    index % 4 === 1 ? 'border-vibrant-cyan' :
+                    index % 4 === 2 ? 'border-vibrant-orange' :
+                    'border-vibrant-emerald'
+                  }`}>
+                    <div className={`w-16 h-16 mb-6 rounded-lg flex items-center justify-center ${
+                      index % 4 === 0 ? 'bg-gradient-to-br from-purple-100 to-purple-200 text-vibrant-purple' :
+                      index % 4 === 1 ? 'bg-gradient-to-br from-cyan-100 to-cyan-200 text-vibrant-cyan' :
+                      index % 4 === 2 ? 'bg-gradient-to-br from-orange-100 to-orange-200 text-vibrant-orange' :
+                      'bg-gradient-to-br from-emerald-100 to-emerald-200 text-vibrant-emerald'
+                    }`}>
+                      {/* Icon would be rendered here based on service.icon */}
+                      <Code className="w-8 h-8" />
+                    </div>
                     <h2 className="text-3xl font-bold text-gray-800 mb-4">{service.title}</h2>
                     <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
                     
                     <div className="grid grid-cols-2 gap-3">
                       {service.features.map((feature, idx) => (
                         <div key={idx} className="flex items-center">
-                          <div className="w-2 h-2 bg-naya-red rounded-full mr-3"></div>
+                          <div className={`w-2 h-2 rounded-full mr-3 ${
+                            index % 4 === 0 ? 'bg-vibrant-purple' :
+                            index % 4 === 1 ? 'bg-vibrant-cyan' :
+                            index % 4 === 2 ? 'bg-vibrant-orange' :
+                            'bg-vibrant-emerald'
+                          }`}></div>
                           <span className="text-sm text-gray-700">{feature}</span>
                         </div>
                       ))}
@@ -129,8 +156,18 @@ const Services = () => {
                 </div>
                 
                 <div className={`${index % 2 === 1 ? 'md:order-1' : ''}`}>
-                  <div className="bg-gradient-to-br from-gray-100 to-gray-200 h-64 rounded-lg flex items-center justify-center">
-                    <service.icon className="w-24 h-24 text-gray-400" />
+                  <div className={`h-64 rounded-lg flex items-center justify-center ${
+                    index % 4 === 0 ? 'bg-gradient-to-br from-purple-100 via-purple-200 to-pink-200' :
+                    index % 4 === 1 ? 'bg-gradient-to-br from-cyan-100 via-cyan-200 to-blue-200' :
+                    index % 4 === 2 ? 'bg-gradient-to-br from-orange-100 via-orange-200 to-yellow-200' :
+                    'bg-gradient-to-br from-emerald-100 via-emerald-200 to-green-200'
+                  }`}>
+                    <Code className={`w-24 h-24 ${
+                      index % 4 === 0 ? 'text-vibrant-purple' :
+                      index % 4 === 1 ? 'text-vibrant-cyan' :
+                      index % 4 === 2 ? 'text-vibrant-orange' :
+                      'text-vibrant-emerald'
+                    }`} />
                   </div>
                 </div>
               </motion.div>
@@ -140,7 +177,7 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial="initial"
@@ -149,13 +186,23 @@ const Services = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-naya-blue mb-4">
-              Ready to Get Started?
+              <EditableText 
+                contentKey="services.cta.title"
+                defaultValue="Ready to Get Started?"
+                as="span"
+                className="bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent"
+              />
             </h2>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Let's discuss how our services can help transform your business and achieve your goals.
+              <EditableText 
+                contentKey="services.cta.subtitle"
+                defaultValue="Let's discuss how our services can help transform your business and achieve your goals."
+                as="span"
+                className="text-gray-600"
+              />
             </p>
             <Link to="/contact">
-              <Button size="lg" className="bg-naya-red hover:bg-red-600 text-white px-8 py-4 text-lg">
+              <Button size="lg" className="bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-red text-white px-8 py-4 text-lg shadow-lg">
                 Discuss Your Needs
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>

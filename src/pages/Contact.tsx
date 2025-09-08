@@ -8,6 +8,8 @@ import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { toast } from "sonner";
+import { EditableText } from "@/components/cms/EditableText";
+import { addFormSubmission } from "@/lib/cms";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -61,7 +63,16 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
+    
+    // Save to CMS
+    addFormSubmission({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      subject: formData.subject,
+      message: formData.message
+    });
+    
     toast.success("Thank you for your message! We'll get back to you soon.");
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
   };
@@ -82,7 +93,7 @@ const Contact = () => {
       />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-naya-blue to-blue-800 text-white py-20">
+      <section className="bg-gradient-to-br from-vibrant-purple via-vibrant-pink to-vibrant-orange text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial="initial"
@@ -91,7 +102,12 @@ const Contact = () => {
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Contact Us</h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              Ready to transform your business with innovative IT solutions? Let's start the conversation.
+              <EditableText 
+                contentKey="contact.hero.subtitle"
+                defaultValue="Ready to transform your business with innovative IT solutions? Let's start the conversation."
+                as="span"
+                className="text-blue-100"
+              />
             </p>
           </motion.div>
         </div>
@@ -110,10 +126,20 @@ const Contact = () => {
             {contactInfo.map((info, index) => (
               <motion.div
                 key={index}
-                className="text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                className={`text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-all hover:scale-105 border-l-4 ${
+                  index === 0 ? 'border-vibrant-purple' :
+                  index === 1 ? 'border-vibrant-cyan' :
+                  index === 2 ? 'border-vibrant-orange' :
+                  'border-vibrant-emerald'
+                }`}
                 variants={fadeInUp}
               >
-                <info.icon className="w-12 h-12 text-naya-blue mx-auto mb-4" />
+                <info.icon className={`w-12 h-12 mx-auto mb-4 ${
+                  index === 0 ? 'text-vibrant-purple' :
+                  index === 1 ? 'text-vibrant-cyan' :
+                  index === 2 ? 'text-vibrant-orange' :
+                  'text-vibrant-emerald'
+                }`} />
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">{info.title}</h3>
                 <div className="space-y-1">
                   {info.details.map((detail, idx) => (
@@ -223,8 +249,13 @@ const Contact = () => {
                 
                 <Button 
                   type="submit" 
-                  size="lg" 
-                  className="w-full bg-naya-red hover:bg-red-600 text-white"
+                  className={`text-gray-400 hover:text-white transition-colors p-2 rounded-full ${
+                    index === 0 ? 'hover:bg-vibrant-purple' :
+                    index === 1 ? 'hover:bg-vibrant-cyan' :
+                    index === 2 ? 'hover:bg-vibrant-pink' :
+                    'hover:bg-vibrant-orange'
+                  }`}
+                  className="w-full bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-red text-white shadow-lg"
                 >
                   <Send className="w-5 h-5 mr-2" />
                   Send Message
@@ -254,28 +285,28 @@ const Contact = () => {
 
               {/* Quick Contact */}
               <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-xl font-bold text-naya-blue mb-4">Prefer to Talk?</h3>
+                <h3 className="text-xl font-bold bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent mb-4">Prefer to Talk?</h3>
                 <p className="text-gray-600 mb-4">
                   Sometimes it's easier to discuss your project over the phone. Our team is ready to help.
                 </p>
                 <div className="space-y-3">
                   <a
                     href="tel:+97714548052"
-                    className="flex items-center text-naya-blue hover:text-blue-700 transition-colors"
+                    className="flex items-center text-vibrant-purple hover:text-purple-700 transition-colors"
                   >
                     <Phone className="w-5 h-5 mr-3" />
                     +977 14548052
                   </a>
                   <a
                     href="tel:+977970511455"
-                    className="flex items-center text-naya-blue hover:text-blue-700 transition-colors"
+                    className="flex items-center text-vibrant-cyan hover:text-cyan-700 transition-colors"
                   >
                     <Phone className="w-5 h-5 mr-3" />
                     +977 970511455
                   </a>
                   <a
                     href="mailto:info@nayacode.com.np"
-                    className="flex items-center text-naya-blue hover:text-blue-700 transition-colors"
+                    className="flex items-center text-vibrant-orange hover:text-orange-700 transition-colors"
                   >
                     <Mail className="w-5 h-5 mr-3" />
                     info@nayacode.com.np
@@ -284,7 +315,7 @@ const Contact = () => {
               </div>
 
               {/* Response Time */}
-              <div className="bg-naya-blue text-white p-6 rounded-lg">
+              <div className="bg-gradient-to-br from-vibrant-indigo to-vibrant-purple text-white p-6 rounded-lg">
                 <h3 className="text-xl font-bold mb-2">Quick Response Guarantee</h3>
                 <p className="text-blue-100">
                   We respond to all inquiries within 24 hours during business days. 
@@ -305,13 +336,23 @@ const Contact = () => {
             variants={fadeInUp}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-naya-blue mb-4">
-              Ready to Start Your Project?
+           <h2 className="text-4xl font-bold bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent mb-4">
+             <EditableText 
+               contentKey="contact.cta.title"
+               defaultValue="Ready to Start Your Project?"
+               as="span"
+               className="bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent"
+             />
             </h2>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Let's discuss how we can help transform your business with innovative technology solutions.
+             <EditableText 
+               contentKey="contact.cta.subtitle"
+               defaultValue="Let's discuss how we can help transform your business with innovative technology solutions."
+               as="span"
+               className="text-gray-600"
+             />
             </p>
-            <Button size="lg" className="bg-naya-red hover:bg-red-600 text-white px-8 py-4 text-lg">
+           <Button size="lg" className="bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-red text-white px-8 py-4 text-lg shadow-lg">
               Schedule a Consultation
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>

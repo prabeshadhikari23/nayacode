@@ -24,43 +24,50 @@ import Services from "./pages/Services";
 import Products from "./pages/Products";
 import Partners from "./pages/Partners";
 import Contact from "./pages/Contact";
+import { CMSProvider } from "./components/cms/CMSProvider";
+import { CMSEditButton } from "./components/cms/CMSEditButton";
+import CMSAdminPage from "./pages/CMSAdminPage";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            {/* Naya Code Routes */}
-            <Route path="/" element={<NayaHomepage />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/partners" element={<Partners />} />
-            <Route path="/contact" element={<Contact />} />
-            
-            {/* Legacy Routes */}
-            <Route path="/wrlds" element={<Index />} />
-            <Route path="/projects/firecat" element={<FireCatProject />} />
-            <Route path="/projects/sport-retail" element={<SportRetailProject />} />
-            <Route path="/projects/workwear" element={<WorkwearProject />} />
-            <Route path="/projects/hockey" element={<HockeyProject />} />
-            <Route path="/projects/pet-tracker" element={<PetProject />} />
-            <Route path="/tech-details" element={<TechDetails />} />
-            <Route path="/development-process" element={<DevelopmentProcess />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPostDetail />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <CMSProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              {/* Naya Code Routes */}
+              <Route path="/" element={<NayaHomepage />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/partners" element={<Partners />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/admin/cms" element={<CMSAdminPage />} />
+              
+              {/* Legacy Routes */}
+              <Route path="/wrlds" element={<Index />} />
+              <Route path="/projects/firecat" element={<FireCatProject />} />
+              <Route path="/projects/sport-retail" element={<SportRetailProject />} />
+              <Route path="/projects/workwear" element={<WorkwearProject />} />
+              <Route path="/projects/hockey" element={<HockeyProject />} />
+              <Route path="/projects/pet-tracker" element={<PetProject />} />
+              <Route path="/tech-details" element={<TechDetails />} />
+              <Route path="/development-process" element={<DevelopmentProcess />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPostDetail />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <CMSEditButton />
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </CMSProvider>
   );
 };
 

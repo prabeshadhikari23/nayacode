@@ -7,6 +7,21 @@
 
 @layer base {
   :root {
+    /* Colorful theme variables */
+    --naya-blue: 220 100% 50%;
+    --naya-red: 0 100% 60%;
+    --naya-white: 0 0% 100%;
+    
+    /* Enhanced color palette */
+    --vibrant-purple: 262 83% 58%;
+    --vibrant-pink: 330 81% 60%;
+    --vibrant-orange: 24 95% 53%;
+    --vibrant-cyan: 188 96% 53%;
+    --vibrant-emerald: 160 84% 39%;
+    --vibrant-yellow: 38 92% 50%;
+    --vibrant-indigo: 239 84% 67%;
+    --vibrant-rose: 351 83% 61%;
+    
     --background: 0 0% 100%;
     --foreground: 0 0% 15%;
 

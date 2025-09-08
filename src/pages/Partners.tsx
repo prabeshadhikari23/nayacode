@@ -4,8 +4,12 @@ import NayaPageLayout from "@/components/NayaPageLayout";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { EditableText } from "@/components/cms/EditableText";
+import { useCMS } from "@/components/cms/CMSProvider";
 
 const Partners = () => {
+  const { partners: cmsPartners } = useCMS();
+  
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0 },
@@ -103,7 +107,7 @@ const Partners = () => {
       />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-naya-blue to-blue-800 text-white py-20">
+      <section className="bg-gradient-to-br from-vibrant-cyan via-vibrant-indigo to-vibrant-purple text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial="initial"
@@ -112,14 +116,19 @@ const Partners = () => {
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Partners</h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              Strategic alliances that enable us to deliver comprehensive solutions and drive innovation together.
+              <EditableText 
+                contentKey="partners.hero.subtitle"
+                defaultValue="Strategic alliances that enable us to deliver comprehensive solutions and drive innovation together."
+                as="span"
+                className="text-blue-100"
+              />
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Partnership Benefits */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16"
@@ -128,10 +137,15 @@ const Partners = () => {
             variants={fadeInUp}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-naya-blue mb-4">Partnership Philosophy</h2>
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-vibrant-purple to-vibrant-orange bg-clip-text text-transparent mb-4">Partnership Philosophy</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We believe in the power of collaboration. Our partnerships enable us to provide comprehensive solutions 
-              and access to cutting-edge technologies.
+              <EditableText 
+                contentKey="partners.philosophy.description"
+                defaultValue="We believe in the power of collaboration. Our partnerships enable us to provide comprehensive solutions and access to cutting-edge technologies."
+                as="span"
+                className="text-gray-600"
+                multiline
+              />
             </p>
           </motion.div>
           
@@ -145,10 +159,20 @@ const Partners = () => {
             {partnershipBenefits.map((benefit, index) => (
               <motion.div
                 key={index}
-                className="text-center p-6 bg-white rounded-lg shadow-md"
+                className={`text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-all hover:scale-105 border-l-4 ${
+                  index === 0 ? 'border-vibrant-purple' :
+                  index === 1 ? 'border-vibrant-cyan' :
+                  index === 2 ? 'border-vibrant-orange' :
+                  'border-vibrant-emerald'
+                }`}
                 variants={fadeInUp}
               >
-                <benefit.icon className="w-12 h-12 text-naya-blue mx-auto mb-4" />
+                <benefit.icon className={`w-12 h-12 mx-auto mb-4 ${
+                  index === 0 ? 'text-vibrant-purple' :
+                  index === 1 ? 'text-vibrant-cyan' :
+                  index === 2 ? 'text-vibrant-orange' :
+                  'text-vibrant-emerald'
+                }`} />
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">{benefit.title}</h3>
                 <p className="text-gray-600">{benefit.description}</p>
               </motion.div>
@@ -158,7 +182,7 @@ const Partners = () => {
       </section>
 
       {/* Partners Grid */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-br from-emerald-50 via-cyan-50 to-blue-50">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16"
@@ -167,9 +191,14 @@ const Partners = () => {
             variants={fadeInUp}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-naya-blue mb-4">Meet Our Partners</h2>
+           <h2 className="text-4xl font-bold bg-gradient-to-r from-vibrant-emerald to-vibrant-cyan bg-clip-text text-transparent mb-4">Meet Our Partners</h2>
             <p className="text-xl text-gray-600">
-              Trusted organizations that help us deliver exceptional value to our clients.
+             <EditableText 
+               contentKey="partners.grid.subtitle"
+               defaultValue="Trusted organizations that help us deliver exceptional value to our clients."
+               as="span"
+               className="text-gray-600"
+             />
             </p>
           </motion.div>
           
@@ -180,13 +209,23 @@ const Partners = () => {
             variants={stagger}
             viewport={{ once: true }}
           >
-            {partners.map((partner, index) => (
+            {(cmsPartners.length > 0 ? cmsPartners : partners).map((partner, index) => (
               <motion.div
                 key={index}
-                className="bg-white rounded-lg shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow"
+                className={`bg-white rounded-lg shadow-lg border-l-4 overflow-hidden hover:shadow-xl transition-all hover:scale-105 ${
+                  index % 4 === 0 ? 'border-vibrant-purple' :
+                  index % 4 === 1 ? 'border-vibrant-cyan' :
+                  index % 4 === 2 ? 'border-vibrant-orange' :
+                  'border-vibrant-emerald'
+                }`}
                 variants={fadeInUp}
               >
-                <div className="h-32 bg-gray-100 flex items-center justify-center">
+                <div className={`h-32 flex items-center justify-center ${
+                  index % 4 === 0 ? 'bg-gradient-to-br from-purple-100 to-purple-200' :
+                  index % 4 === 1 ? 'bg-gradient-to-br from-cyan-100 to-cyan-200' :
+                  index % 4 === 2 ? 'bg-gradient-to-br from-orange-100 to-orange-200' :
+                  'bg-gradient-to-br from-emerald-100 to-emerald-200'
+                }`}>
                   <div className="w-40 h-20 bg-gray-200 rounded flex items-center justify-center">
                     <span className="text-gray-500 font-medium">{partner.name}</span>
                   </div>
@@ -195,6 +234,12 @@ const Partners = () => {
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="px-3 py-1 bg-naya-blue/10 text-naya-blue rounded-full text-sm font-medium">
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                      index % 4 === 0 ? 'bg-purple-100 text-vibrant-purple' :
+                      index % 4 === 1 ? 'bg-cyan-100 text-vibrant-cyan' :
+                      index % 4 === 2 ? 'bg-orange-100 text-vibrant-orange' :
+                      'bg-emerald-100 text-vibrant-emerald'
+                    }`}>
                       {partner.category}
                     </span>
                   </div>
@@ -208,7 +253,12 @@ const Partners = () => {
                       href={partner.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-sm text-gray-600 hover:text-naya-blue transition-colors"
+                      className={`inline-flex items-center text-sm text-gray-600 transition-colors ${
+                        index % 4 === 0 ? 'hover:text-vibrant-purple' :
+                        index % 4 === 1 ? 'hover:text-vibrant-cyan' :
+                        index % 4 === 2 ? 'hover:text-vibrant-orange' :
+                        'hover:text-vibrant-emerald'
+                      }`}
                     >
                       Visit Website
                       <ExternalLink className="w-4 h-4 ml-1" />
@@ -222,7 +272,7 @@ const Partners = () => {
       </section>
 
       {/* Partnership Opportunities */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50">
         <div className="container mx-auto px-4">
           <motion.div
             className="max-w-4xl mx-auto text-center"
@@ -232,30 +282,40 @@ const Partners = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-naya-blue mb-6">
-              Become Our Partner
+              <EditableText 
+                contentKey="partners.cta.title"
+                defaultValue="Become Our Partner"
+                as="span"
+                className="bg-gradient-to-r from-vibrant-rose to-vibrant-purple bg-clip-text text-transparent"
+              />
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              Are you interested in partnering with us? We're always looking for strategic alliances 
-              that can bring mutual value and innovation to the market.
+              <EditableText 
+                contentKey="partners.cta.subtitle"
+                defaultValue="Are you interested in partnering with us? We're always looking for strategic alliances that can bring mutual value and innovation to the market."
+                as="span"
+                className="text-gray-600"
+                multiline
+              />
             </p>
             
             <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div className="p-6 bg-white rounded-lg shadow-md">
+              <div className="p-6 bg-white rounded-lg shadow-md border-l-4 border-vibrant-purple">
                 <h3 className="font-semibold text-gray-800 mb-2">Technology Partners</h3>
                 <p className="text-sm text-gray-600">Collaborate on innovative solutions and product development</p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-md">
+              <div className="p-6 bg-white rounded-lg shadow-md border-l-4 border-vibrant-cyan">
                 <h3 className="font-semibold text-gray-800 mb-2">Channel Partners</h3>
                 <p className="text-sm text-gray-600">Expand market reach and customer base together</p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-md">
+              <div className="p-6 bg-white rounded-lg shadow-md border-l-4 border-vibrant-orange">
                 <h3 className="font-semibold text-gray-800 mb-2">Strategic Alliances</h3>
                 <p className="text-sm text-gray-600">Long-term partnerships for mutual growth and success</p>
               </div>
             </div>
             
             <Link to="/contact">
-              <Button size="lg" className="bg-naya-red hover:bg-red-600 text-white px-8 py-4 text-lg">
+              <Button size="lg" className="bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-red text-white px-8 py-4 text-lg shadow-lg">
                 Partner With Us
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
