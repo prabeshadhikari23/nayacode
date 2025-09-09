@@ -4,7 +4,7 @@ import { useCMS } from '../components/cms/CMSProvider';
 import { EditableText } from '../components/cms/EditableText';
 
 export default function Partners() {
-  const { data } = useCMS();
+  const { partners } = useCMS();
 
   return (
     <>
@@ -51,7 +51,7 @@ export default function Partners() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {data.partners.map((partner, index) => (
+            {partners.map((partner, index) => (
               <div
                 key={partner.id}
                 className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-purple-100 hover:border-purple-300 group"
