@@ -249,12 +249,6 @@ const Contact = () => {
                 
                 <Button 
                   type="submit" 
-                  className={`text-gray-400 hover:text-white transition-colors p-2 rounded-full ${
-                    index === 0 ? 'hover:bg-vibrant-purple' :
-                    index === 1 ? 'hover:bg-vibrant-cyan' :
-                    index === 2 ? 'hover:bg-vibrant-pink' :
-                    'hover:bg-vibrant-orange'
-                  }`}
                   className="w-full bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-red text-white shadow-lg"
                 >
                   <Send className="w-5 h-5 mr-2" />
