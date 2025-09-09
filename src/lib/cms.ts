@@ -106,12 +106,30 @@ const initializeDefaultContent = () => {
   const defaultPartners: PartnerItem[] = [
     {
       id: '1',
-      name: 'TechCorp International',
-      logo: '/api/placeholder/200/100',
-      description: 'Leading technology solutions provider',
-      website: 'https://techcorp.com',
+      name: 'Microsoft Nepal',
+      logo: '/lovable-uploads/39671993-1bb4-4bb6-8819-3ca5c07c0042.png',
+      description: 'Strategic technology partnership for cloud solutions and enterprise software development',
+      website: 'https://microsoft.com',
       category: 'Technology',
       order: 1
+    },
+    {
+      id: '2',
+      name: 'Google Cloud Partner',
+      logo: '/lovable-uploads/39671993-1bb4-4bb6-8819-3ca5c07c0042.png',
+      description: 'Certified Google Cloud partner providing scalable cloud infrastructure solutions',
+      website: 'https://cloud.google.com',
+      category: 'Cloud Services',
+      order: 2
+    },
+    {
+      id: '3',
+      name: 'AWS Solutions Partner',
+      logo: '/lovable-uploads/39671993-1bb4-4bb6-8819-3ca5c07c0042.png',
+      description: 'Amazon Web Services partner specializing in cloud migration and DevOps solutions',
+      website: 'https://aws.amazon.com',
+      category: 'Cloud Infrastructure',
+      order: 3
     }
   ];
 

@@ -28,8 +28,9 @@ import {
   updateContactInfo,
   updateFormSubmission 
 } from '@/lib/cms';
-import { ServiceItem, PortfolioItem, PartnerItem, ContactInfo } from '@/types/cms';
+import { ServiceItem, PortfolioItem, PartnerItem, ContactInfo, FormSubmission } from '@/types/cms';
 import { toast } from 'sonner';
+import { LoadingSpinner } from '@/components/common/LoadingSpinner';
 
 export const CMSAdmin: React.FC = () => {
   const { 
@@ -48,7 +49,11 @@ export const CMSAdmin: React.FC = () => {
   const [editingPartner, setEditingPartner] = useState<PartnerItem | null>(null);
   const [editingContact, setEditingContact] = useState<ContactInfo | null>(null);
 
+  // Loading state for better UX
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSaveService = (service: ServiceItem) => {
+    setIsLoading(true);
     const updatedServices = editingService?.id 
       ? services.map(s => s.id === service.id ? service : s)
       : [...services, { ...service, id: Date.now().toString() }];
@@ -56,17 +61,21 @@ export const CMSAdmin: React.FC = () => {
     updateServices(updatedServices);
     setEditingService(null);
     refreshData();
+    setIsLoading(false);
     toast.success('Service updated successfully');
   };
 
   const handleDeleteService = (id: string) => {
+    setIsLoading(true);
     const updatedServices = services.filter(s => s.id !== id);
     updateServices(updatedServices);
     refreshData();
+    setIsLoading(false);
     toast.success('Service deleted successfully');
   };
 
   const handleSavePortfolio = (item: PortfolioItem) => {
+    setIsLoading(true);
     const updatedPortfolio = editingPortfolio?.id 
       ? portfolio.map(p => p.id === item.id ? item : p)
       : [...portfolio, { ...item, id: Date.now().toString() }];
@@ -74,17 +83,21 @@ export const CMSAdmin: React.FC = () => {
     updatePortfolio(updatedPortfolio);
     setEditingPortfolio(null);
     refreshData();
+    setIsLoading(false);
     toast.success('Portfolio item updated successfully');
   };
 
   const handleDeletePortfolio = (id: string) => {
+    setIsLoading(true);
     const updatedPortfolio = portfolio.filter(p => p.id !== id);
     updatePortfolio(updatedPortfolio);
     refreshData();
+    setIsLoading(false);
     toast.success('Portfolio item deleted successfully');
   };
 
   const handleSavePartner = (partner: PartnerItem) => {
+    setIsLoading(true);
     const updatedPartners = editingPartner?.id 
       ? partners.map(p => p.id === partner.id ? partner : p)
       : [...partners, { ...partner, id: Date.now().toString() }];
@@ -92,28 +105,43 @@ export const CMSAdmin: React.FC = () => {
     updatePartners(updatedPartners);
     setEditingPartner(null);
     refreshData();
+    setIsLoading(false);
     toast.success('Partner updated successfully');
   };
 
   const handleDeletePartner = (id: string) => {
+    setIsLoading(true);
     const updatedPartners = partners.filter(p => p.id !== id);
     updatePartners(updatedPartners);
     refreshData();
+    setIsLoading(false);
     toast.success('Partner deleted successfully');
   };
 
   const handleSaveContact = (contactInfo: ContactInfo) => {
+    setIsLoading(true);
     updateContactInfo(contactInfo);
     setEditingContact(null);
     refreshData();
+    setIsLoading(false);
     toast.success('Contact information updated successfully');
   };
 
   const handleFormStatusUpdate = (id: string, status: FormSubmission['status']) => {
+    setIsLoading(true);
     updateFormSubmission(id, { status });
     refreshData();
+    setIsLoading(false);
     toast.success('Form status updated');
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <LoadingSpinner size="lg" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">

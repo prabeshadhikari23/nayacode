@@ -9,16 +9,29 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { toast } from "sonner";
 import { EditableText } from "@/components/cms/EditableText";
+import { SectionHeader } from "@/components/common/SectionHeader";
+import { GradientButton } from "@/components/common/GradientButton";
 import { addFormSubmission } from "@/lib/cms";
+import { useFormValidation } from "@/hooks/useFormValidation";
+import { contactFormSchema, ContactFormData } from "@/utils/validation";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
+  const initialFormData: ContactFormData = {
     name: '',
     email: '',
     phone: '',
     subject: '',
     message: ''
-  });
+  };
+
+  const {
+    values: formData,
+    errors,
+    isSubmitting,
+    handleChange,
+    handleSubmit: handleFormSubmit,
+    reset
+  } = useFormValidation(contactFormSchema, initialFormData);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
@@ -61,27 +74,22 @@ const Contact = () => {
     }
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Save to CMS
-    addFormSubmission({
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      subject: formData.subject,
-      message: formData.message
-    });
-    
-    toast.success("Thank you for your message! We'll get back to you soon.");
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value
-    });
+  const handleSubmit = async (data: ContactFormData) => {
+    try {
+      // Save to CMS
+      addFormSubmission({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        subject: data.subject,
+        message: data.message
+      });
+      
+      toast.success("Thank you for your message! We'll get back to you soon.");
+      reset();
+    } catch (error) {
+      toast.error("Failed to send message. Please try again.");
+    }
   };
 
   return (
@@ -176,7 +184,10 @@ const Contact = () => {
                 Fill out the form below and we'll get back to you within 24 hours.
               </p>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                handleFormSubmit(handleSubmit);
+              }} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="name">Name *</Label>
@@ -184,11 +195,12 @@ const Contact = () => {
                       id="name"
                       type="text"
                       value={formData.name}
-                      onChange={handleInputChange}
+                      onChange={(e) => handleChange('name', e.target.value)}
                       required
-                      className="mt-1"
+                      className={`mt-1 ${errors.name ? 'border-red-500' : ''}`}
                       placeholder="Your full name"
                     />
+                    {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                   </div>
                   <div>
                     <Label htmlFor="email">Email *</Label>
@@ -196,25 +208,27 @@ const Contact = () => {
                       id="email"
                       type="email"
                       value={formData.email}
-                      onChange={handleInputChange}
+                      onChange={(e) => handleChange('email', e.target.value)}
                       required
-                      className="mt-1"
+                      className={`mt-1 ${errors.email ? 'border-red-500' : ''}`}
                       placeholder="your.email@example.com"
                     />
+                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                   </div>
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="phone">Phone</Label>
+                    <Label htmlFor="phone">Phone (Optional)</Label>
                     <Input
                       id="phone"
                       type="tel"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="mt-1"
+                      value={formData.phone || ''}
+                      onChange={(e) => handleChange('phone', e.target.value)}
+                      className={`mt-1 ${errors.phone ? 'border-red-500' : ''}`}
                       placeholder="+977 9800000000"
                     />
+                    {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
                   </div>
                   <div>
                     <Label htmlFor="subject">Subject *</Label>
@@ -222,11 +236,12 @@ const Contact = () => {
                       id="subject"
                       type="text"
                       value={formData.subject}
-                      onChange={handleInputChange}
+                      onChange={(e) => handleChange('subject', e.target.value)}
                       required
-                      className="mt-1"
+                      className={`mt-1 ${errors.subject ? 'border-red-500' : ''}`}
                       placeholder="How can we help you?"
                     />
+                    {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
                   </div>
                 </div>
                 
@@ -235,11 +250,12 @@ const Contact = () => {
                   <Textarea
                     id="message"
                     value={formData.message}
-                    onChange={handleInputChange}
+                    onChange={(e) => handleChange('message', e.target.value)}
                     required
-                    className="mt-1 min-h-[120px]"
+                    className={`mt-1 min-h-[120px] ${errors.message ? 'border-red-500' : ''}`}
                     placeholder="Tell us about your project or requirements..."
                   />
+                  {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
                 </div>
                 
                 {/* Google reCAPTCHA placeholder */}
@@ -247,13 +263,15 @@ const Contact = () => {
                   <p className="text-sm">reCAPTCHA verification will be implemented here</p>
                 </div>
                 
-                <Button 
+                <GradientButton
                   type="submit" 
-                  className="w-full bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-red text-white shadow-lg"
+                  gradient="primary"
+                  className="w-full"
+                  disabled={isSubmitting}
                 >
                   <Send className="w-5 h-5 mr-2" />
-                  Send Message
-                </Button>
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </GradientButton>
               </form>
             </motion.div>
 
@@ -346,10 +364,10 @@ const Contact = () => {
                className="text-gray-600"
              />
             </p>
-           <Button size="lg" className="bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-red text-white px-8 py-4 text-lg shadow-lg">
+           <GradientButton size="lg" gradient="primary" className="px-8 py-4 text-lg">
               Schedule a Consultation
               <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
+            </GradientButton>
           </motion.div>
         </div>
       </section>

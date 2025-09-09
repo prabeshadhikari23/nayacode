@@ -29,7 +29,19 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [services, setServices] = useState<ServiceItem[]>([]);
   const [portfolio, setPortfolio] = useState<PortfolioItem[]>([]);
   const [partners, setPartners] = useState<PartnerItem[]>([]);
-  const [contact, setContact] = useState<ContactInfo>({} as ContactInfo);
+  const [contact, setContact] = useState<ContactInfo>({
+    id: '1',
+    address: 'Dillibazar-30, Kathmandu, Nepal',
+    phone: ['+977 14548052', '+977 970511455'],
+    email: ['info@nayacode.com.np'],
+    businessHours: ['Monday - Friday: 9:00 AM - 6:00 PM', 'Saturday: 10:00 AM - 4:00 PM'],
+    socialLinks: {
+      facebook: 'https://facebook.com/nayacode',
+      twitter: 'https://twitter.com/nayacode',
+      linkedin: 'https://linkedin.com/company/nayacode',
+      instagram: 'https://instagram.com/nayacode'
+    }
+  });
   const [formSubmissions, setFormSubmissions] = useState<FormSubmission[]>([]);
   const [isEditMode, setEditMode] = useState(false);
 
