@@ -1,5 +1,5 @@
 import React from 'react';
-import { SEO } from '../components/SEO';
+import SEO from '../components/SEO';
 import { useCMS } from '../components/cms/CMSProvider';
 import { EditableText } from '../components/cms/EditableText';
 
