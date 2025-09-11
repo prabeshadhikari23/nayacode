@@ -3,7 +3,7 @@ import { Edit3, Save, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { updateCMSContent, getCMSContentByKey } from '@/lib/cms';
+import { updateCMSContent } from '@/lib/cms';
 import { useCMS } from './CMSProvider';
 
 interface EditableTextProps {
@@ -21,18 +21,30 @@ export const EditableText: React.FC<EditableTextProps> = ({
   as: Component = 'p',
   multiline = false
 }) => {
-  const { isEditMode, refreshData } = useCMS();
+  const { isEditMode, refreshData, content } = useCMS();
   const [isEditing, setIsEditing] = useState(false);
-  const [value, setValue] = useState(() => getCMSContentByKey(contentKey) || defaultValue);
+  
+  // Get current value from CMS content
+  const getCurrentValue = () => {
+    const item = content.find(item => item.key === contentKey);
+    return item?.value || defaultValue;
+  };
+  
+  const [value, setValue] = useState(getCurrentValue);
 
-  const handleSave = () => {
-    updateCMSContent(contentKey, value);
+  // Update local state when content changes
+  React.useEffect(() => {
+    setValue(getCurrentValue());
+  }, [content, contentKey, defaultValue]);
+
+  const handleSave = async () => {
+    await updateCMSContent(contentKey, value);
     setIsEditing(false);
-    refreshData();
+    await refreshData();
   };
 
   const handleCancel = () => {
-    setValue(getCMSContentByKey(contentKey) || defaultValue);
+    setValue(getCurrentValue());
     setIsEditing(false);
   };
 
@@ -70,7 +82,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
   return (
     <div className="relative group">
       <Component className={className}>
-        {getCMSContentByKey(contentKey) || defaultValue}
+        {getCurrentValue()}
       </Component>
       {isEditMode && (
         <Button

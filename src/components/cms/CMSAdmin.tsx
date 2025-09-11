@@ -58,20 +58,28 @@ export const CMSAdmin: React.FC = () => {
       ? services.map(s => s.id === service.id ? service : s)
       : [...services, { ...service, id: Date.now().toString() }];
     
-    updateServices(updatedServices);
+    updateServices(updatedServices).then(() => {
+      refreshData();
+      setIsLoading(false);
+      toast.success('Service updated successfully');
+    }).catch(() => {
+      setIsLoading(false);
+      toast.error('Failed to update service');
+    });
     setEditingService(null);
-    refreshData();
-    setIsLoading(false);
-    toast.success('Service updated successfully');
   };
 
   const handleDeleteService = (id: string) => {
     setIsLoading(true);
     const updatedServices = services.filter(s => s.id !== id);
-    updateServices(updatedServices);
-    refreshData();
-    setIsLoading(false);
-    toast.success('Service deleted successfully');
+    updateServices(updatedServices).then(() => {
+      refreshData();
+      setIsLoading(false);
+      toast.success('Service deleted successfully');
+    }).catch(() => {
+      setIsLoading(false);
+      toast.error('Failed to delete service');
+    });
   };
 
   const handleSavePortfolio = (item: PortfolioItem) => {
@@ -80,20 +88,28 @@ export const CMSAdmin: React.FC = () => {
       ? portfolio.map(p => p.id === item.id ? item : p)
       : [...portfolio, { ...item, id: Date.now().toString() }];
     
-    updatePortfolio(updatedPortfolio);
+    updatePortfolio(updatedPortfolio).then(() => {
+      refreshData();
+      setIsLoading(false);
+      toast.success('Portfolio item updated successfully');
+    }).catch(() => {
+      setIsLoading(false);
+      toast.error('Failed to update portfolio item');
+    });
     setEditingPortfolio(null);
-    refreshData();
-    setIsLoading(false);
-    toast.success('Portfolio item updated successfully');
   };
 
   const handleDeletePortfolio = (id: string) => {
     setIsLoading(true);
     const updatedPortfolio = portfolio.filter(p => p.id !== id);
-    updatePortfolio(updatedPortfolio);
-    refreshData();
-    setIsLoading(false);
-    toast.success('Portfolio item deleted successfully');
+    updatePortfolio(updatedPortfolio).then(() => {
+      refreshData();
+      setIsLoading(false);
+      toast.success('Portfolio item deleted successfully');
+    }).catch(() => {
+      setIsLoading(false);
+      toast.error('Failed to delete portfolio item');
+    });
   };
 
   const handleSavePartner = (partner: PartnerItem) => {
@@ -102,37 +118,53 @@ export const CMSAdmin: React.FC = () => {
       ? partners.map(p => p.id === partner.id ? partner : p)
       : [...partners, { ...partner, id: Date.now().toString() }];
     
-    updatePartners(updatedPartners);
+    updatePartners(updatedPartners).then(() => {
+      refreshData();
+      setIsLoading(false);
+      toast.success('Partner updated successfully');
+    }).catch(() => {
+      setIsLoading(false);
+      toast.error('Failed to update partner');
+    });
     setEditingPartner(null);
-    refreshData();
-    setIsLoading(false);
-    toast.success('Partner updated successfully');
   };
 
   const handleDeletePartner = (id: string) => {
     setIsLoading(true);
     const updatedPartners = partners.filter(p => p.id !== id);
-    updatePartners(updatedPartners);
-    refreshData();
-    setIsLoading(false);
-    toast.success('Partner deleted successfully');
+    updatePartners(updatedPartners).then(() => {
+      refreshData();
+      setIsLoading(false);
+      toast.success('Partner deleted successfully');
+    }).catch(() => {
+      setIsLoading(false);
+      toast.error('Failed to delete partner');
+    });
   };
 
   const handleSaveContact = (contactInfo: ContactInfo) => {
     setIsLoading(true);
-    updateContactInfo(contactInfo);
+    updateContactInfo(contactInfo).then(() => {
+      refreshData();
+      setIsLoading(false);
+      toast.success('Contact information updated successfully');
+    }).catch(() => {
+      setIsLoading(false);
+      toast.error('Failed to update contact information');
+    });
     setEditingContact(null);
-    refreshData();
-    setIsLoading(false);
-    toast.success('Contact information updated successfully');
   };
 
   const handleFormStatusUpdate = (id: string, status: FormSubmission['status']) => {
     setIsLoading(true);
-    updateFormSubmission(id, { status });
-    refreshData();
-    setIsLoading(false);
-    toast.success('Form status updated');
+    updateFormSubmission(id, { status }).then(() => {
+      refreshData();
+      setIsLoading(false);
+      toast.success('Form status updated');
+    }).catch(() => {
+      setIsLoading(false);
+      toast.error('Failed to update form status');
+    });
   };
 
   if (isLoading) {

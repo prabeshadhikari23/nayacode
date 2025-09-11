@@ -77,7 +77,7 @@ const Contact = () => {
   const handleSubmit = async (data: ContactFormData) => {
     try {
       // Save to CMS
-      addFormSubmission({
+      await addFormSubmission({
         name: data.name,
         email: data.email,
         phone: data.phone,

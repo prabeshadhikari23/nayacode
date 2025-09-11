@@ -1,5 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { getCMSContent, getServices, getPortfolio, getPartners, getContactInfo, getFormSubmissions } from '@/lib/cms';
+import { 
+  getCMSContent, 
+  getServices, 
+  getPortfolio, 
+  getPartners, 
+  getContactInfo, 
+  getFormSubmissions 
+} from '@/lib/cms';
 import { CMSContent, ServiceItem, PortfolioItem, PartnerItem, ContactInfo, FormSubmission } from '@/types/cms';
 
 interface CMSContextType {
@@ -45,13 +52,33 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [formSubmissions, setFormSubmissions] = useState<FormSubmission[]>([]);
   const [isEditMode, setEditMode] = useState(false);
 
-  const refreshData = () => {
-    setContent(getCMSContent());
-    setServices(getServices());
-    setPortfolio(getPortfolio());
-    setPartners(getPartners());
-    setContact(getContactInfo());
-    setFormSubmissions(getFormSubmissions());
+  const refreshData = async () => {
+    try {
+      const [
+        contentData,
+        servicesData,
+        portfolioData,
+        partnersData,
+        contactData,
+        formsData
+      ] = await Promise.all([
+        getCMSContent(),
+        getServices(),
+        getPortfolio(),
+        getPartners(),
+        getContactInfo(),
+        getFormSubmissions()
+      ]);
+
+      setContent(contentData);
+      setServices(servicesData);
+      setPortfolio(portfolioData);
+      setPartners(partnersData);
+      setContact(contactData);
+      setFormSubmissions(formsData);
+    } catch (error) {
+      console.error('Error refreshing CMS data:', error);
+    }
   };
 
   useEffect(() => {
