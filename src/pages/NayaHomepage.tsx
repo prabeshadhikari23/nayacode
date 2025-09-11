@@ -94,13 +94,13 @@ const NayaHomepage = () => {
               variants={fadeInUp}
             >
               <Link to="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-pink text-white px-8 py-4 text-lg shadow-lg">
+                <Button variant="outline" size="lg" className="bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-pink text-white px-8 py-4 text-lg shadow-lg">
                   Start Your Project
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
               <Link to="/services">
-                <Button variant="outline" size="lg" className="bg-gradient-to-r from-vibrant-purple to-vibrant-emerald hover:from-vibrant-emerald hover:to-vibrant-purple text-white px-8 py-4 text-lg shadow-lg">
+                <Button  size="lg" className="bg-gradient-to-r from-vibrant-purple to-vibrant-emerald hover:from-vibrant-emerald hover:to-vibrant-purple text-white px-8 py-4 text-lg shadow-lg">
                   Explore Services
                 </Button>
               </Link>
