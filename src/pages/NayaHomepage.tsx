@@ -100,7 +100,7 @@ const NayaHomepage = () => {
                 </Button>
               </Link>
               <Link to="/services">
-                <Button variant="outline" size="lg" className="bg-gradient-to-r from-vibrant-yellow to-vibrant-orange hover:text-vibrant-purple px-8 py-4 text-lg">
+                <Button variant="outline" size="lg" className="bg-gradient-to-r from-vibrant-red to-vibrant-rose hover:text-vibrant-purple px-8 py-4 text-lg">
                   Explore Services
                 </Button>
               </Link>
