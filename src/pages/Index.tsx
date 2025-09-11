@@ -21,10 +21,10 @@ const Index = () => {
   return (
     <PageLayout>
       <SEO 
-        title="WRLDS - Smart Textile Technology" 
-        description="WRLDS Technologies: Pioneering smart engineering solutions with textile sensors for sports, safety, and performance monitoring."
-        imageUrl="/lovable-uploads/526dc38a-25fa-40d4-b520-425b23ae0464.png"
-        keywords={['smart textiles', 'wearable technology', 'textile sensors', 'sports tech', 'safety monitoring', 'performance analytics', 'manufacturing']}
+        title="Naya Code Pvt. Ltd." 
+        description="Pioneering smart IT solutions with excilence Excellence."
+        imageUrl="/lovable-uploads/nayacode.svg"
+        keywords={['smart Technology', 'technology in Nepal', 'Naya Code', 'IT Security', 'BPR', 'Fintech', 'Development']}
       />
       <Hero />
       <Features />
