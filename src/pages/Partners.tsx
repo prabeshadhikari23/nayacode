@@ -91,44 +91,47 @@ const Partners: React.FC = () => {
             viewport={{ once: true }}
           >
             {partners.map((partner, index) => (
+              const borderColors = ['border-vibrant-purple', 'border-vibrant-cyan', 'border-vibrant-orange', 'border-vibrant-emerald'];
+              const bgGradients = [
+                'bg-gradient-to-br from-purple-100 to-purple-200',
+                'bg-gradient-to-br from-cyan-100 to-cyan-200', 
+                'bg-gradient-to-br from-orange-100 to-orange-200',
+                'bg-gradient-to-br from-emerald-100 to-emerald-200'
+              ];
+              const textColors = ['group-hover:text-vibrant-purple', 'group-hover:text-vibrant-cyan', 'group-hover:text-vibrant-orange', 'group-hover:text-vibrant-emerald'];
+              const linkColors = ['text-vibrant-purple', 'text-vibrant-cyan', 'text-vibrant-orange', 'text-vibrant-emerald'];
+              
+              return (
               <motion.div
                 key={partner.id}
-                className={`group bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border-l-4 hover:scale-105 ${
-                  index % 4 === 0 ? 'border-vibrant-purple' :
-                  index % 4 === 1 ? 'border-vibrant-cyan' :
-                  index % 4 === 2 ? 'border-vibrant-orange' :
-                  'border-vibrant-emerald'
-                }`}
+                className={cn(
+                  "group bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border-l-4 hover:scale-105",
+                  borderColors[index % 4]
+                )}
                 variants={fadeInUp}
               >
                 <div className="p-6">
-                  <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 ${
-                    index % 4 === 0 ? 'bg-gradient-to-br from-purple-100 to-purple-200' :
-                    index % 4 === 1 ? 'bg-gradient-to-br from-cyan-100 to-cyan-200' :
-                    index % 4 === 2 ? 'bg-gradient-to-br from-orange-100 to-orange-200' :
-                    'bg-gradient-to-br from-emerald-100 to-emerald-200'
-                  }`}>
+                  <div className={cn(
+                    "w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300",
+                    bgGradients[index % 4]
+                  )}>
                     <span className="text-2xl font-bold text-white">
                       {partner.name.charAt(0)}
                     </span>
                   </div>
-                  <h3 className={`text-xl font-bold text-gray-900 mb-3 transition-colors ${
-                    index % 4 === 0 ? 'group-hover:text-vibrant-purple' :
-                    index % 4 === 1 ? 'group-hover:text-vibrant-cyan' :
-                    index % 4 === 2 ? 'group-hover:text-vibrant-orange' :
-                    'group-hover:text-vibrant-emerald'
-                  }`}>
+                  <h3 className={cn(
+                    "text-xl font-bold text-gray-900 mb-3 transition-colors",
+                    textColors[index % 4]
+                  )}>
                     {partner.name}
                   </h3>
                   <p className="text-gray-600 mb-4 leading-relaxed">
                     {partner.description}
                   </p>
-                  <div className={`flex items-center text-sm font-medium ${
-                    index % 4 === 0 ? 'text-vibrant-purple' :
-                    index % 4 === 1 ? 'text-vibrant-cyan' :
-                    index % 4 === 2 ? 'text-vibrant-orange' :
-                    'text-vibrant-emerald'
-                  }`}>
+                  <div className={cn(
+                    "flex items-center text-sm font-medium",
+                    linkColors[index % 4]
+                  )}>
                     <span>Learn More</span>
                     <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -166,8 +169,6 @@ const Partners: React.FC = () => {
                 as="span"
                 className="text-gray-600"
               />
-            </p>
-          </div>
 
           <motion.div 
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
