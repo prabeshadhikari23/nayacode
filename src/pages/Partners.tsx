@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '@/lib/utils';
 import { useCMS } from '@/components/cms/CMSProvider';
 import { EditableText } from '@/components/cms/EditableText';
 import SEO from '../components/SEO';
