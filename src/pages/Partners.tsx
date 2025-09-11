@@ -90,7 +90,7 @@ const Partners: React.FC = () => {
             variants={stagger}
             viewport={{ once: true }}
           >
-            {partners.map((partner, index) => (
+            {partners.map((partner, index) => {
               const borderColors = ['border-vibrant-purple', 'border-vibrant-cyan', 'border-vibrant-orange', 'border-vibrant-emerald'];
               const bgGradients = [
                 'bg-gradient-to-br from-purple-100 to-purple-200',
@@ -139,7 +139,8 @@ const Partners: React.FC = () => {
                   </div>
                 </div>
               </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -169,6 +170,8 @@ const Partners: React.FC = () => {
                 as="span"
                 className="text-gray-600"
               />
+            </p>
+          </motion.div>
 
           <motion.div 
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
