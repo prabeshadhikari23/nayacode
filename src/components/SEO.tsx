@@ -197,10 +197,10 @@ const SEO: React.FC<SEOProps> = ({
 
   return (
     <Helmet>
-      <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon.png">
-      <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon.png">
-      <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png">
+      <link rel="icon" href="/favicon.png" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+      <link rel="apple-touch-icon" href="/favicon.png">
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={currentUrl} />
