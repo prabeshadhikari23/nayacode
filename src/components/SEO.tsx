@@ -218,14 +218,6 @@ const SEO: React.FC<SEOProps> = ({
       {isBlogPost && modifiedDate && <meta property="article:modified_time" content={modifiedDate} />}
       {isBlogPost && <meta property="article:publisher" content="https://wrlds.com" />}
       
-      {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url" content={currentUrl} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={absoluteImageUrl} />
-      <meta name="twitter:site" content="@wrldstechnologies" />
-      <meta name="twitter:creator" content="@wrldstechnologies" />
       
       {/* LinkedIn specific */}
       <meta property="og:image:secure_url" content={absoluteImageUrl} />
