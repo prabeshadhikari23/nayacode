@@ -38,7 +38,6 @@ const NayaFooter = () => {
                   src={`${import.meta.env.BASE_URL}nayacode.svg`}
                   alt="Company Logo" 
                   className="h-10 w-auto" 
-                  style="filter: brightness(0) invert(1);"
                 />
             </Link>
             <p className="text-gray-300 text-sm leading-relaxed">
