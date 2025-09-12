@@ -39,7 +39,7 @@ const NayaNavbar = () => {
           {/* Logo */}
          <Link to="/" className="flex items-center space-x-2">
                 <img 
-                  src="${process.env.PUBLIC_URL}/nayacode.svg"
+                  src={`${import.meta.env.BASE_URL}nayacode.svg`}
                   alt="Company Logo" 
                   className="h-10 w-auto" 
                 />
