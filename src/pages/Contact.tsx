@@ -288,7 +288,7 @@ const Contact = () => {
                 <h3 className="text-2xl font-bold text-naya-blue mb-4">Find Us</h3>
                 <div className="bg-gray-200 h-64 rounded-lg overflow-hidden">
                   <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14130.857353934968!2d85.31666035683545!3d27.69393136984918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1968cee7500d%3A0x260f11a1ef4b0c08!2sDillibazar%2C%20Kathmandu%2044600%2C%20Nepal!5e0!3m2!1sen!2sus!4v1730305610485!5m2!1sen!2sus" 
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d883.1014012062387!2d85.3299626!3d27.7047604!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb193ca2a435cb%3A0x57f1f628d8a5c5b!2sNaya%20Code%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1757659369402!5m2!1sen!2snp" 
                     width="100%" 
                     height="100%" 
                     style={{border:0}} 
