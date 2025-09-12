@@ -37,19 +37,13 @@ const NayaNavbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-vibrant-purple to-vibrant-pink rounded-lg flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-lg">NC</span>
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent">
-              <EditableText 
-                contentKey="brand.name"
-                defaultValue="Naya Code"
-                as="span"
-                className="bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent"
-              />
-            </span>
-          </Link>
+         <Link to="/" className="flex items-center space-x-2">
+                <img 
+                  src="/nayacode.svg"
+                  alt="Company Logo" 
+                  className="h-10 w-auto" 
+                />
+            </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
