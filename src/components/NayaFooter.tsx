@@ -34,17 +34,11 @@ const NayaFooter = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-vibrant-purple to-vibrant-pink rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">NC</span>
-              </div>
-              <span className="text-xl font-bold">
-                <EditableText 
-                  contentKey="footer.brand"
-                  defaultValue="Naya Code"
-                  as="span"
-                  className="text-white"
+                <img 
+                  src="/nayacode.svg"
+                  alt="Company Logo" 
+                  className="h-10 w-auto" 
                 />
-              </span>
             </Link>
             <p className="text-gray-300 text-sm leading-relaxed">
               <EditableText 
