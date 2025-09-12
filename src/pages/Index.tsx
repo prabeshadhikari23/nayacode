@@ -23,7 +23,7 @@ const Index = () => {
       <SEO 
         title="Naya Code Pvt. Ltd." 
         description="Pioneering smart IT solutions with excilence Excellence."
-        imageUrl="/nayacode.svg"
+        imageUrl="${process.env.PUBLIC_URL}/nayacode.svg"
         keywords={['smart Technology', 'technology in Nepal', 'Naya Code', 'IT Security', 'BPR', 'Fintech', 'Development']}
       />
       <Hero />
