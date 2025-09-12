@@ -35,7 +35,7 @@ const NayaFooter = () => {
           <div className="space-y-4">
             <Link to="/" className="flex items-center space-x-2">
                 <img 
-                  src={`${import.meta.env.BASE_URL}nayacode.svg`}
+                  src={`${import.meta.env.BASE_URL}logo-grayscale-inverted.svg`}
                   alt="Company Logo" 
                   className="h-10 w-auto" 
                 />
