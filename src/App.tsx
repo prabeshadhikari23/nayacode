@@ -27,33 +27,25 @@ import Partners from "./pages/Partners";
 import Contact from "./pages/Contact";
 import { CMSProvider } from "./components/cms/CMSProvider";
 import { ErrorBoundary } from "./components/common/ErrorBoundary";
-import { AuthProvider } from "./contexts/AuthContext";
-import Auth from "./pages/Auth";
-import Admin from "./pages/Admin";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
     <ErrorBoundary>
-      <AuthProvider>
-        <CMSProvider>
-          <QueryClientProvider client={queryClient}>
-            <TooltipProvider>
-              <Toaster />
-              <Sonner />
-              <BrowserRouter>
-                <Routes>
-                  {/* Auth & Admin Routes */}
-                  <Route path="/auth" element={<Auth />} />
-                  <Route path="/admin" element={<Admin />} />
-
-                  {/* Naya Code Routes */}
-                  <Route path="/" element={<NayaHomepage />} />
-                  <Route path="/services" element={<Services />} />
-                  <Route path="/products" element={<Products />} />
-                  <Route path="/partners" element={<Partners />} />
-                  <Route path="/contact" element={<Contact />} />
+      <CMSProvider>
+        <QueryClientProvider client={queryClient}>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+                {/* Naya Code Routes */}
+                <Route path="/" element={<NayaHomepage />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/partners" element={<Partners />} />
+                <Route path="/contact" element={<Contact />} />
 
                 {/* Legacy Routes */}
                 <Route path="/wrlds" element={<Index />} />
@@ -71,11 +63,10 @@ const App = () => {
                 <Route path="/blog/:slug" element={<BlogPostDetail />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
-              </BrowserRouter>
-            </TooltipProvider>
-          </QueryClientProvider>
-        </CMSProvider>
-      </AuthProvider>
+            </BrowserRouter>
+          </TooltipProvider>
+        </QueryClientProvider>
+      </CMSProvider>
     </ErrorBoundary>
   );
 };

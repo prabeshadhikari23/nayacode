@@ -228,9 +228,7 @@ export const CMSAdmin: React.FC = () => {
                   description: '',
                   features: [],
                   category: '',
-                  display_order: services.length + 1,
-                  created_at: new Date().toISOString(),
-                  updated_at: new Date().toISOString()
+                  order: services.length + 1
                 })}>
                   <Plus className="w-4 h-4 mr-2" />
                   Add Service
@@ -280,13 +278,10 @@ export const CMSAdmin: React.FC = () => {
                   title: '',
                   category: '',
                   description: '',
-                  image_url: '',
+                  imageUrl: '',
                   tags: [],
                   featured: false,
-                  display_order: portfolio.length + 1,
-                  link: '',
-                  created_at: new Date().toISOString(),
-                  updated_at: new Date().toISOString()
+                  order: portfolio.length + 1
                 })}>
                   <Plus className="w-4 h-4 mr-2" />
                   Add Portfolio Item
@@ -338,10 +333,7 @@ export const CMSAdmin: React.FC = () => {
                   logo: '',
                   description: '',
                   category: '',
-                  display_order: partners.length + 1,
-                  website: '',
-                  created_at: new Date().toISOString(),
-                  updated_at: new Date().toISOString()
+                  order: partners.length + 1
                 })}>
                   <Plus className="w-4 h-4 mr-2" />
                   Add Partner
@@ -415,7 +407,7 @@ export const CMSAdmin: React.FC = () => {
                   </div>
                   <div>
                     <Label className="font-semibold">Business Hours</Label>
-                    {contact.business_hours?.map((hours, idx) => (
+                    {contact.businessHours?.map((hours, idx) => (
                       <p key={idx} className="text-gray-600">{hours}</p>
                     ))}
                   </div>
@@ -438,7 +430,7 @@ export const CMSAdmin: React.FC = () => {
                           <CardTitle className="text-lg">{submission.name}</CardTitle>
                           <p className="text-sm text-gray-600">{submission.email}</p>
                           <p className="text-xs text-gray-500">
-                            {new Date(submission.created_at).toLocaleDateString()}
+                            {new Date(submission.submittedAt).toLocaleDateString()}
                           </p>
                         </div>
                         <div className="flex gap-2">
