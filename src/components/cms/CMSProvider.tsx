@@ -41,13 +41,15 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     address: 'Dillibazar-30, Kathmandu, Nepal',
     phone: ['+977 14548052', '+977 970511455'],
     email: ['info@nayacode.com.np'],
-    businessHours: ['Monday - Friday: 9:00 AM - 6:00 PM', 'Saturday: 10:00 AM - 4:00 PM'],
-    socialLinks: {
+    business_hours: ['Monday - Friday: 9:00 AM - 6:00 PM', 'Saturday: 10:00 AM - 4:00 PM'],
+    social_links: {
       facebook: 'https://facebook.com/nayacode',
       twitter: 'https://twitter.com/nayacode',
       linkedin: 'https://linkedin.com/company/nayacode',
       instagram: 'https://instagram.com/nayacode'
-    }
+    },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
   });
   const [formSubmissions, setFormSubmissions] = useState<FormSubmission[]>([]);
   const [isEditMode, setEditMode] = useState(false);
@@ -74,7 +76,7 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       setServices(servicesData);
       setPortfolio(portfolioData);
       setPartners(partnersData);
-      setContact(contactData);
+      if (contactData) setContact(contactData);
       setFormSubmissions(formsData);
     } catch (error) {
       console.error('Error refreshing CMS data:', error);

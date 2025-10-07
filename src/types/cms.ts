@@ -1,10 +1,10 @@
 export interface CMSContent {
   id: string;
-  type: 'text' | 'image' | 'service' | 'portfolio' | 'partner' | 'contact' | 'form-submission';
   key: string;
-  value: any;
-  lastModified: string;
-  modifiedBy?: string;
+  value: string;
+  type: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface ServiceItem {
@@ -13,56 +13,60 @@ export interface ServiceItem {
   title: string;
   description: string;
   features: string[];
-  category: string;
-  order: number;
+  category: string | null;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface PortfolioItem {
   id: string;
   title: string;
-  category: string;
-  description: string;
-  imageUrl: string;
+  category: string | null;
+  description: string | null;
+  image_url: string | null;
   tags: string[];
-  link?: string;
+  link: string | null;
   featured: boolean;
-  order: number;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface PartnerItem {
   id: string;
   name: string;
-  logo: string;
-  description: string;
-  website?: string;
-  category: string;
-  order: number;
+  logo: string | null;
+  description: string | null;
+  website: string | null;
+  category: string | null;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface ContactInfo {
   id: string;
-  address: string;
+  address: string | null;
   phone: string[];
   email: string[];
-  businessHours: string[];
-  socialLinks: {
-    facebook?: string;
-    twitter?: string;
-    linkedin?: string;
-    instagram?: string;
-  };
+  business_hours: string[];
+  social_links: any;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface FormSubmission {
   id: string;
   name: string;
   email: string;
-  phone?: string;
-  subject?: string;
+  phone: string | null;
+  subject: string | null;
   message: string;
-  submittedAt: string;
-  status: 'new' | 'read' | 'replied' | 'archived';
-  notes?: string;
+  status: string;
+  notes: string | null;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface CMSUser {
