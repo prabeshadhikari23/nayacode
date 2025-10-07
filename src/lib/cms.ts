@@ -1,14 +1,78 @@
 import { supabase } from '@/integrations/supabase/client';
-import {
-  CMSContent,
-  ServiceItem,
-  PortfolioItem,
-  PartnerItem,
-  ContactInfo,
-  FormSubmission
-} from '@/types/cms';
 
-export const getCMSContent = async (): Promise<CMSContent[]> => {
+export interface CMSContentItem {
+  id: string;
+  key: string;
+  value: string;
+  type: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ServiceItem {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+  features: string[];
+  category: string | null;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PortfolioItem {
+  id: string;
+  title: string;
+  category: string | null;
+  description: string | null;
+  image_url: string | null;
+  tags: string[];
+  link: string | null;
+  featured: boolean;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PartnerItem {
+  id: string;
+  name: string;
+  logo: string | null;
+  description: string | null;
+  website: string | null;
+  category: string | null;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ContactInfo {
+  id: string;
+  address: string | null;
+  phone: string[];
+  email: string[];
+  business_hours: string[];
+  social_links: any;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface FormSubmission {
+  id: string;
+  name: string;
+  email: string;
+  phone: string | null;
+  subject: string | null;
+  message: string;
+  status: string;
+  notes: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// Content management
+export const getCMSContent = async (): Promise<CMSContentItem[]> => {
   const { data, error } = await supabase
     .from('cms_content')
     .select('*')
@@ -23,8 +87,8 @@ export const getCMSContentByKey = async (key: string): Promise<string> => {
     .from('cms_content')
     .select('value')
     .eq('key', key)
-    .maybeSingle();
-
+    .single();
+  
   if (error) return '';
   return data?.value || '';
 };
@@ -127,8 +191,8 @@ export const getContactInfo = async (): Promise<ContactInfo | null> => {
     .from('cms_contact')
     .select('*')
     .limit(1)
-    .maybeSingle();
-
+    .single();
+  
   if (error) return null;
   return data;
 };
