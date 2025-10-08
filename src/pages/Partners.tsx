@@ -1,17 +1,33 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { useCMS } from '@/components/cms/CMSProvider';
-import { EditableText } from '@/components/cms/EditableText';
-import SEO from '../components/SEO';
-import { GradientButton } from '@/components/common/GradientButton';
-import { SectionHeader } from '@/components/common/SectionHeader';
 import NayaPageLayout from '@/components/NayaPageLayout';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Partners: React.FC = () => {
-  const { partners } = useCMS();
+  // Static partners data
+  const partners = [
+    {
+      id: '1',
+      name: 'Microsoft Nepal',
+      description: 'Strategic technology partnership for cloud solutions and enterprise software development',
+      category: 'Technology'
+    },
+    {
+      id: '2',
+      name: 'Google Cloud Partner',
+      description: 'Certified Google Cloud partner providing scalable cloud infrastructure solutions',
+      category: 'Cloud Services'
+    },
+    {
+      id: '3',
+      name: 'AWS Solutions Partner',
+      description: 'Amazon Web Services partner specializing in cloud migration and DevOps solutions',
+      category: 'Cloud Infrastructure'
+    }
+  ];
 
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
@@ -29,11 +45,6 @@ const Partners: React.FC = () => {
 
   return (
     <NayaPageLayout>
-      <SEO 
-        title="Our Partners - Naya Code Pvt. Ltd."
-        description="Discover our trusted partners and strategic alliances that help us deliver exceptional digital solutions."
-        keywords={["partners Nepal", "strategic alliances", "technology partnerships", "business collaboration"]}
-      />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-vibrant-purple via-vibrant-pink to-vibrant-orange text-white py-20">
@@ -45,12 +56,7 @@ const Partners: React.FC = () => {
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Partners</h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              <EditableText 
-                contentKey="partners.hero.subtitle"
-                defaultValue="Building success through powerful partnerships and collaborative innovation."
-                as="span"
-                className="text-blue-100"
-              />
+              Building success through powerful partnerships and collaborative innovation.
             </p>
           </motion.div>
         </div>
@@ -67,20 +73,10 @@ const Partners: React.FC = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent mb-4">
-              <EditableText 
-                contentKey="partners.section.title"
-                defaultValue="Trusted Partners"
-                as="span"
-                className="bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent"
-              />
+              Trusted Partners
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              <EditableText 
-                contentKey="partners.section.subtitle"
-                defaultValue="We collaborate with industry leaders to deliver exceptional results"
-                as="span"
-                className="text-gray-600"
-              />
+              We collaborate with industry leaders to deliver exceptional results
             </p>
           </motion.div>
           
@@ -157,20 +153,10 @@ const Partners: React.FC = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold bg-gradient-to-r from-vibrant-indigo to-vibrant-pink bg-clip-text text-transparent mb-4">
-              <EditableText 
-                contentKey="partners.benefits.title"
-                defaultValue="Why Partner With Us?"
-                as="span"
-                className="bg-gradient-to-r from-vibrant-indigo to-vibrant-pink bg-clip-text text-transparent"
-              />
+              Why Partner With Us?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              <EditableText 
-                contentKey="partners.benefits.subtitle"
-                defaultValue="Discover the advantages of strategic collaboration"
-                as="span"
-                className="text-gray-600"
-              />
+              Discover the advantages of strategic collaboration
             </p>
           </motion.div>
 
@@ -224,26 +210,16 @@ const Partners: React.FC = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold bg-gradient-to-r from-vibrant-emerald to-vibrant-cyan bg-clip-text text-transparent mb-4">
-              <EditableText 
-                contentKey="partners.cta.title"
-                defaultValue="Ready to Partner With Us?"
-                as="span"
-                className="bg-gradient-to-r from-vibrant-emerald to-vibrant-cyan bg-clip-text text-transparent"
-              />
+              Ready to Partner With Us?
             </h2>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              <EditableText 
-                contentKey="partners.cta.subtitle"
-                defaultValue="Let's explore how we can work together to achieve extraordinary results and drive mutual success."
-                as="span"
-                className="text-gray-600"
-              />
+              Let's explore how we can work together to achieve extraordinary results and drive mutual success.
             </p>
             <Link to="/contact">
-              <GradientButton size="lg" gradient="success" className="px-8 py-4 text-lg">
+              <Button size="lg" className="bg-gradient-to-r from-vibrant-emerald to-vibrant-cyan hover:from-vibrant-cyan hover:to-vibrant-emerald text-white px-8 py-4 text-lg shadow-lg">
                 Start Partnership Discussion
                 <ArrowRight className="ml-2 w-5 h-5" />
-              </GradientButton>
+              </Button>
             </Link>
           </motion.div>
         </div>

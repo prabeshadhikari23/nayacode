@@ -25,7 +25,6 @@ import Services from "./pages/Services";
 import Products from "./pages/Products";
 import Partners from "./pages/Partners";
 import Contact from "./pages/Contact";
-import { CMSProvider } from "./components/cms/CMSProvider";
 import { ErrorBoundary } from "./components/common/ErrorBoundary";
 
 const App = () => {
@@ -33,40 +32,38 @@ const App = () => {
 
   return (
     <ErrorBoundary>
-      <CMSProvider>
-        <QueryClientProvider client={queryClient}>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <Routes>
-                {/* Naya Code Routes */}
-                <Route path="/" element={<NayaHomepage />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/partners" element={<Partners />} />
-                <Route path="/contact" element={<Contact />} />
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              {/* Naya Code Routes */}
+              <Route path="/" element={<NayaHomepage />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/partners" element={<Partners />} />
+              <Route path="/contact" element={<Contact />} />
 
-                {/* Legacy Routes */}
-                <Route path="/wrlds" element={<Index />} />
-                <Route path="/projects/firecat" element={<FireCatProject />} />
-                <Route path="/projects/sport-retail" element={<SportRetailProject />} />
-                <Route path="/projects/workwear" element={<WorkwearProject />} />
-                <Route path="/projects/hockey" element={<HockeyProject />} />
-                <Route path="/projects/pet-tracker" element={<PetProject />} />
-                <Route path="/tech-details" element={<TechDetails />} />
-                <Route path="/development-process" element={<DevelopmentProcess />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/careers" element={<Careers />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogPostDetail />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </BrowserRouter>
-          </TooltipProvider>
-        </QueryClientProvider>
-      </CMSProvider>
+              {/* Legacy Routes */}
+              <Route path="/wrlds" element={<Index />} />
+              <Route path="/projects/firecat" element={<FireCatProject />} />
+              <Route path="/projects/sport-retail" element={<SportRetailProject />} />
+              <Route path="/projects/workwear" element={<WorkwearProject />} />
+              <Route path="/projects/hockey" element={<HockeyProject />} />
+              <Route path="/projects/pet-tracker" element={<PetProject />} />
+              <Route path="/tech-details" element={<TechDetails />} />
+              <Route path="/development-process" element={<DevelopmentProcess />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPostDetail />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
     </ErrorBoundary>
   );
 };

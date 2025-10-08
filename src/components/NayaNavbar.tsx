@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { EditableText } from "@/components/cms/EditableText";
 
 const NayaNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);

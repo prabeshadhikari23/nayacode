@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
-import { EditableText } from "@/components/cms/EditableText";
 
 const NayaFooter = () => {
   const currentYear = new Date().getFullYear();
@@ -41,13 +40,7 @@ const NayaFooter = () => {
                 />
             </Link>
             <p className="text-gray-300 text-sm leading-relaxed">
-              <EditableText 
-                contentKey="footer.description"
-                defaultValue="Transforming challenges into digital opportunities. We are your trusted partner for innovative, scalable, and secure IT solutions in Nepal and beyond."
-                as="span"
-                className="text-gray-300"
-                multiline
-              />
+              Transforming challenges into digital opportunities. We are your trusted partner for innovative, scalable, and secure IT solutions in Nepal and beyond.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (

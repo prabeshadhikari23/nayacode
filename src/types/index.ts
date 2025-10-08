@@ -1,6 +1,3 @@
-// Re-export all types from a central location
-export * from './cms';
-
 // Common types used across the application
 export interface BaseEntity {
   id: string;

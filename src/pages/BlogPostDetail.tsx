@@ -2,7 +2,6 @@
 import { useParams } from 'react-router-dom';
 import { blogPosts } from '@/data/blogPosts';
 import PageLayout from '@/components/PageLayout';
-import SEO from '@/components/SEO';
 import EnhancedBlogContent from '@/components/EnhancedBlogContent';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
@@ -31,17 +30,6 @@ const BlogPostDetail = () => {
 
   return (
     <PageLayout>
-      <SEO 
-        title={`${post.title} - WRLDS`}
-        description={post.metaDescription || post.excerpt}
-        imageUrl={post.imageUrl}
-        keywords={post.keywords}
-        isBlogPost={true}
-        publishDate={new Date(post.date).toISOString()}
-        author={post.author}
-        category={post.category}
-        type="article"
-      />
       
       <article className="w-full pt-16 pb-16">
         {/* Hero Section - Taller to accommodate text content */}

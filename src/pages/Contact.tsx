@@ -4,14 +4,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import NayaPageLayout from "@/components/NayaPageLayout";
-import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { toast } from "sonner";
-import { EditableText } from "@/components/cms/EditableText";
-import { SectionHeader } from "@/components/common/SectionHeader";
-import { GradientButton } from "@/components/common/GradientButton";
-import { addFormSubmission } from "@/lib/cms";
 import { useFormValidation } from "@/hooks/useFormValidation";
 import { contactFormSchema, ContactFormData } from "@/utils/validation";
 
@@ -76,14 +71,8 @@ const Contact = () => {
 
   const handleSubmit = async (data: ContactFormData) => {
     try {
-      // Save to CMS
-      await addFormSubmission({
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        subject: data.subject,
-        message: data.message
-      });
+      // Form submission - can be connected to email service or backend
+      console.log('Form submitted:', data);
       
       toast.success("Thank you for your message! We'll get back to you soon.");
       reset();
@@ -94,11 +83,6 @@ const Contact = () => {
 
   return (
     <NayaPageLayout>
-      <SEO 
-        title="Contact Us - Naya Code Pvt. Ltd."
-        description="Get in touch with Naya Code for IT solutions and consultations. Located in Dillibazar, Kathmandu, Nepal. Call us at +977 14548052."
-        keywords={["contact Naya Code", "IT company Kathmandu", "Dillibazar office", "Nepal IT services"]}
-      />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-vibrant-purple via-vibrant-pink to-vibrant-orange text-white py-20">
@@ -110,12 +94,7 @@ const Contact = () => {
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Contact Us</h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              <EditableText 
-                contentKey="contact.hero.subtitle"
-                defaultValue="Ready to transform your business with innovative IT solutions? Let's start the conversation."
-                as="span"
-                className="text-blue-100"
-              />
+              Ready to transform your business with innovative IT solutions? Let's start the conversation.
             </p>
           </motion.div>
         </div>
@@ -263,15 +242,15 @@ const Contact = () => {
                   <p className="text-sm">reCAPTCHA verification will be implemented here</p>
                 </div>
                 
-                <GradientButton
+                <Button
                   type="submit" 
-                  gradient="primary"
-                  className="w-full"
+                  size="lg"
+                  className="w-full bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-red text-white"
                   disabled={isSubmitting}
                 >
                   <Send className="w-5 h-5 mr-2" />
                   {isSubmitting ? 'Sending...' : 'Send Message'}
-                </GradientButton>
+                </Button>
               </form>
             </motion.div>
 
@@ -353,26 +332,16 @@ const Contact = () => {
             variants={fadeInUp}
             viewport={{ once: true }}
           >
-           <h2 className="text-4xl font-bold bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent mb-4">
-             <EditableText 
-               contentKey="contact.cta.title"
-               defaultValue="Ready to Start Your Project?"
-               as="span"
-               className="bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent"
-             />
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent mb-4">
+              Ready to Start Your Project?
             </h2>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-             <EditableText 
-               contentKey="contact.cta.subtitle"
-               defaultValue="Let's discuss how we can help transform your business with innovative technology solutions."
-               as="span"
-               className="text-gray-600"
-             />
+              Let's discuss how we can help transform your business with innovative technology solutions.
             </p>
-           <GradientButton size="lg" gradient="primary" className="px-8 py-4 text-lg">
+            <Button size="lg" className="bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-red text-white px-8 py-4 text-lg shadow-lg">
               Schedule a Consultation
               <ArrowRight className="ml-2 w-5 h-5" />
-            </GradientButton>
+            </Button>
           </motion.div>
         </div>
       </section>

@@ -1,15 +1,10 @@
 import { Code, Shield, Target, Users, Lightbulb, Award, BookOpen, MessageCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NayaPageLayout from "@/components/NayaPageLayout";
-import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { EditableText } from "@/components/cms/EditableText";
-import { useCMS } from "@/components/cms/CMSProvider";
 
 const Services = () => {
-  const { services: cmsServices } = useCMS();
-  
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0 },
@@ -77,11 +72,6 @@ const Services = () => {
 
   return (
     <NayaPageLayout>
-      <SEO 
-        title="IT Services - Naya Code Pvt. Ltd."
-        description="Comprehensive IT solutions including software development, cybersecurity, digital marketing, UI/UX design, and more. Expert services in Nepal."
-        keywords={["IT services Nepal", "software development", "cybersecurity", "digital marketing", "UI UX design"]}
-      />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-vibrant-purple via-vibrant-pink to-vibrant-orange text-white py-20">
@@ -93,12 +83,7 @@ const Services = () => {
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Services</h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              <EditableText 
-                contentKey="services.hero.subtitle"
-                defaultValue="Comprehensive IT solutions designed to drive your business forward with innovation and expertise."
-                as="span"
-                className="text-blue-100"
-              />
+              Comprehensive IT solutions designed to drive your business forward with innovation and expertise.
             </p>
           </motion.div>
         </div>
@@ -108,7 +93,7 @@ const Services = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid gap-12">
-            {(cmsServices.length > 0 ? cmsServices : services).map((service, index) => (
+            {services.map((service, index) => (
               <motion.div
                 key={service.id}
                 id={service.id}
@@ -186,20 +171,10 @@ const Services = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-naya-blue mb-4">
-              <EditableText 
-                contentKey="services.cta.title"
-                defaultValue="Ready to Get Started?"
-                as="span"
-                className="bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent"
-              />
+              Ready to Get Started?
             </h2>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              <EditableText 
-                contentKey="services.cta.subtitle"
-                defaultValue="Let's discuss how our services can help transform your business and achieve your goals."
-                as="span"
-                className="text-gray-600"
-              />
+              Let's discuss how our services can help transform your business and achieve your goals.
             </p>
             <Link to="/contact">
               <Button size="lg" className="bg-gradient-to-r from-vibrant-pink to-vibrant-rose hover:from-vibrant-rose hover:to-vibrant-red text-white px-8 py-4 text-lg shadow-lg">

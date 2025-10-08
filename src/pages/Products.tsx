@@ -1,10 +1,8 @@
 import { Laptop, Smartphone, Cloud, Database, Globe, Shield, ArrowRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NayaPageLayout from "@/components/NayaPageLayout";
-import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { EditableText } from "@/components/cms/EditableText";
 
 const Products = () => {
   const fadeInUp = {
@@ -80,11 +78,6 @@ const Products = () => {
 
   return (
     <NayaPageLayout>
-      <SEO 
-        title="Software Products - Naya Code Pvt. Ltd."
-        description="Innovative software products and solutions developed by Naya Code. From CRM systems to cybersecurity suites, discover our technology offerings."
-        keywords={["software products Nepal", "CRM software", "cybersecurity solutions", "business automation"]}
-      />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-vibrant-indigo via-vibrant-purple to-vibrant-pink text-white py-20">
@@ -96,12 +89,7 @@ const Products = () => {
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Products</h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              <EditableText 
-                contentKey="products.hero.subtitle"
-                defaultValue="Innovative software solutions designed to solve real business challenges and drive digital transformation."
-                as="span"
-                className="text-blue-100"
-              />
+              Innovative software solutions designed to solve real business challenges and drive digital transformation.
             </p>
           </motion.div>
         </div>
@@ -199,21 +187,10 @@ const Products = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-naya-blue mb-6">
-              <EditableText 
-                contentKey="products.custom.title"
-                defaultValue="Need Something Custom?"
-                as="span"
-                className="bg-gradient-to-r from-vibrant-orange to-vibrant-red bg-clip-text text-transparent"
-              />
+              Need Something Custom?
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              <EditableText 
-                contentKey="products.custom.subtitle"
-                defaultValue="We specialize in developing custom software solutions tailored to your specific business requirements. From enterprise applications to specialized tools, we can build exactly what you need."
-                as="span"
-                className="text-gray-600"
-                multiline
-              />
+              We specialize in developing custom software solutions tailored to your specific business requirements. From enterprise applications to specialized tools, we can build exactly what you need.
             </p>
             
             <div className="grid md:grid-cols-3 gap-6 mb-8">

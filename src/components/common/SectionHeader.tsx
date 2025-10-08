@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { EditableText } from '@/components/cms/EditableText';
 
 interface SectionHeaderProps {
   title: string;
@@ -34,21 +33,11 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       viewport={{ once: true }}
     >
       <h2 className="text-4xl font-bold bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent mb-4">
-        <EditableText 
-          contentKey={titleKey}
-          defaultValue={title}
-          as="span"
-          className="bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent"
-        />
+        {title}
       </h2>
-      {subtitle && subtitleKey && (
+      {subtitle && (
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          <EditableText 
-            contentKey={subtitleKey}
-            defaultValue={subtitle}
-            as="span"
-            className="text-gray-600"
-          />
+          {subtitle}
         </p>
       )}
     </motion.div>

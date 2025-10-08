@@ -1,10 +1,8 @@
 import { ArrowRight, CheckCircle, Users, Code, Shield, Lightbulb, Target, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NayaPageLayout from "@/components/NayaPageLayout";
-import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { EditableText } from "@/components/cms/EditableText";
 
 const NayaHomepage = () => {
   const fadeInUp = {
@@ -49,11 +47,6 @@ const NayaHomepage = () => {
 
   return (
     <NayaPageLayout>
-      <SEO 
-        title="Naya Code Pvt. Ltd. - IT Solutions Company in Nepal"
-        description="Transforming challenges into digital opportunities. Your partner for innovative, scalable, and secure IT solutions in Nepal and beyond."
-        keywords={["IT solutions Nepal", "software development Kathmandu", "digital transformation Nepal"]}
-      />
       
       {/* Hero Section */}
       <section className="relative min-h-screen bg-gradient-to-br from-vibrant-purple via-vibrant-pink to-vibrant-orange text-white overflow-hidden">
@@ -69,24 +62,14 @@ const NayaHomepage = () => {
               className="text-5xl md:text-7xl font-bold mb-6 leading-tight bg-gradient-to-r from-yellow-300 via-pink-300 to-cyan-300 bg-clip-text text-transparent"
               variants={fadeInUp}
             >
-              <EditableText 
-                contentKey="hero.title"
-                defaultValue="Transforming Challenges into Digital Opportunities"
-                as="span"
-                className="bg-gradient-to-r from-yellow-300 via-pink-300 to-cyan-300 bg-clip-text text-transparent"
-              />
+              Transforming Challenges into Digital Opportunities
             </motion.h1>
             
             <motion.p 
               className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl"
               variants={fadeInUp}
             >
-              <EditableText 
-                contentKey="hero.subtitle"
-                defaultValue="Your partner for innovative, scalable, and secure IT solutions in Nepal and beyond."
-                as="span"
-                className="text-white/90"
-              />
+              Your partner for innovative, scalable, and secure IT solutions in Nepal and beyond.
             </motion.p>
             
             <motion.div 
@@ -120,20 +103,10 @@ const NayaHomepage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent mb-4">
-              <EditableText 
-                contentKey="philosophy.title"
-                defaultValue="Our Core Philosophy"
-                as="span"
-                className="bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent"
-              />
+              Our Core Philosophy
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              <EditableText 
-                contentKey="philosophy.description"
-                defaultValue="We believe in creating digital solutions that not only solve problems but also drive innovation and growth."
-                as="span"
-                className="text-gray-600"
-              />
+              We believe in creating digital solutions that not only solve problems but also drive innovation and growth.
             </p>
           </motion.div>
           
@@ -303,20 +276,10 @@ const NayaHomepage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold mb-4">
-              <EditableText 
-                contentKey="cta.title"
-                defaultValue="Ready to discuss your project?"
-                as="span"
-                className="text-white"
-              />
+              Ready to discuss your project?
             </h2>
             <p className="text-xl mb-8 text-blue-100">
-              <EditableText 
-                contentKey="cta.subtitle"
-                defaultValue="Let's transform your ideas into powerful digital solutions."
-                as="span"
-                className="text-blue-100"
-              />
+              Let's transform your ideas into powerful digital solutions.
             </p>
             <Link to="/contact">
               <Button size="lg" className="bg-gradient-to-r from-vibrant-yellow to-vibrant-orange hover:from-vibrant-orange hover:to-vibrant-red text-white px-8 py-4 text-lg shadow-lg">

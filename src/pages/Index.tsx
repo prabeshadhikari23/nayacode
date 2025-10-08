@@ -5,7 +5,6 @@ import Features from '@/components/Features';
 import Projects from '@/components/Projects';
 import WhyWrlds from '@/components/WhyWrlds';
 import BlogPreview from '@/components/BlogPreview';
-import SEO from '@/components/SEO';
 import { useEffect } from 'react';
 
 const Index = () => {
@@ -20,12 +19,6 @@ const Index = () => {
 
   return (
     <PageLayout>
-      <SEO 
-        title="Naya Code Pvt. Ltd." 
-        description="Pioneering smart IT solutions with excilence Excellence."
-        imageUrl={`${import.meta.env.BASE_URL}nayacode.svg`}
-        keywords={['smart Technology', 'technology in Nepal', 'Naya Code', 'IT Security', 'BPR', 'Fintech', 'Development']}
-      />
       <Hero />
       <Features />
       <WhyWrlds />
